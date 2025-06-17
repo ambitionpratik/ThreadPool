@@ -33,5 +33,5 @@ private:
     // Synchronization
     std::mutex m_queueMutex;
     std::condition_variable m_condition;
-    std::atomic<bool> m_stop{false};
+    std::atomic<bool> m_stop{false}; // This will break the while loop in the thread
 };
