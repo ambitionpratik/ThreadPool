@@ -11,5 +11,7 @@ It is used create a pool of threads. The thread can be pick from to pool to proc
 - Create a task that can be executed by worker thread in thread pool.
 - Added a task into thread pool's task queue.
 
-
+**Compilation and Execution**
+- g++ Client.cpp ThreadPool.cpp ThreadTask.cpp -o myThreadPool
+- ./myThreadPool
 
