@@ -13,23 +13,25 @@
 
 class ThreadPool
 {
-    public:
+public:
+
+    static ThreadPool& Get();
+
+    void EnqueueTask(std::unique_ptr<ThreadTaskInterface> task);
+
+private:
 
     ThreadPool(uint8_t noOfThreads);
     ~ThreadPool();
 
-    void EnqueueTask();
-
-    private:
-
     // Worker threads
-    std::vector<std::thread> workers{};
+    std::vector<std::thread> m_workers{};
 
     // Task queue
-    std::queue<std::unique_ptr<ThreadTaskInterface>> tasks{};
+    std::queue<std::unique_ptr<ThreadTaskInterface>> m_tasks{};
 
     // Synchronization
-    std::mutex queueMutex;
-    std::condition_variable condition;
-    std::atomic<bool> stop;
+    std::mutex m_queueMutex;
+    std::condition_variable m_condition;
+    std::atomic<bool> m_stop{false};
 };
